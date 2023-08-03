@@ -1,2 +1,8 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+.center {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
