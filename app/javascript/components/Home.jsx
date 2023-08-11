@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 const embedVideo = () => {
 
 	const apiUrl = "http://localhost:3000/api/v1/videos"
-	const [ videoUrl, setVideoUrl ] = useState()
+	const [ videoUrl, setVideoUrl ] = useState(null)
 	const [ startTime, setStartTime ] = useState(null);
 	const [ now, setNow ] = useState(null);
 	const [ continueFlag, setContinueFlag ] = useState(false);
@@ -18,6 +18,9 @@ const embedVideo = () => {
 					+ "&mute=1")							//yt policy restricts embedded videos from autoplaying unless they are muted
 			)
 	}
+
+	function next() {window.location.reload(false);}
+	function cont() {setContinueFlag(!continueFlag)}
 
 	useEffect(() => {fetchVideo()}, [])	
 	useEffect(() => {
@@ -43,10 +46,8 @@ const embedVideo = () => {
 				/>
 			</div>
 			<div className="pad">
-      			<button onClick={window.location.reload(false)}>Next Bideo</button> 			
-      				{/*onClick reload the page to fetch the new video*/}
-      			{!continueFlag && <button onClick={setContinueFlag(true)}>Continue</button>}
-      				{/*onClick set flag to hide continue button once clicked*/}
+      			<button onClick={next}>Next Bideo</button> 
+      			{!continueFlag && <button onClick={cont}>Continue</button>}
     		</div>
 		</>
 	)
